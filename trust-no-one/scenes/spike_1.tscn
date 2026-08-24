@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b4k2tokigtp1m"]
+
+[ext_resource type="Texture2D" uid="uid://chow4eu0w1p1v" path="res://Assets/spikes.png" id="1_kciil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6fv"]
+size = Vector2(42, 44)
+
+[node name="spike_1" type="StaticBody2D" unique_id=482699169]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=962207034]
+shape = SubResource("RectangleShape2D_rr6fv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1145612739]
+scale = Vector2(0.7924528, 1.6800001)
+texture = ExtResource("1_kciil")
+region_enabled = true
+region_rect = Rect2(68.78435, 38.30371, 53.4972, 25.974556)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1273999138]

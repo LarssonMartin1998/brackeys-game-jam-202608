@@ -55,7 +55,6 @@ text = "Game is meant to be played with dialog sound on"
 
 [node name="test audio" type="AudioStreamPlayer2D" parent="." unique_id=2003523905]
 stream = ExtResource("2_ekxnf")
-autoplay = true
 
 [connection signal="pressed" from="Control/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Control/new game" to="." method="_on_new_game_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do2oqbcw3j8dm"
-path="res://.godot/imported/sun.png-736ce854ab22ff55d51294ff29b94917.ctex"
+uid="uid://jucl854ii56r"
+path="res://.godot/imported/Parralax-3.png-e7c64ea4c3b1bb9422599dd61baae69a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sun.png"
-dest_files=["res://.godot/imported/sun.png-736ce854ab22ff55d51294ff29b94917.ctex"]
+source_file="res://Assets/backgrounds/Parralax-3.png"
+dest_files=["res://.godot/imported/Parralax-3.png-e7c64ea4c3b1bb9422599dd61baae69a.ctex"]
 
 [params]
 

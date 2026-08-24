@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c742bdr7n2igy"
-path="res://.godot/imported/Parralax-2.png-140674ca48a958003ec02ec569259229.ctex"
+uid="uid://chow4eu0w1p1v"
+path="res://.godot/imported/spikes.png-78fb6c5b7c62c5e94301b5874d7a443e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Parralax-2.png"
-dest_files=["res://.godot/imported/Parralax-2.png-140674ca48a958003ec02ec569259229.ctex"]
+source_file="res://Assets/spikes.png"
+dest_files=["res://.godot/imported/spikes.png-78fb6c5b7c62c5e94301b5874d7a443e.ctex"]
 
 [params]
 
