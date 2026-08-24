@@ -33,7 +33,7 @@ texture = ExtResource("5_ppgk2")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_2r41h")
 
-[node name="Level" type="Node2D" unique_id=934745453]
+[node name="level_1" type="Node2D" unique_id=934745453]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=152978685]
 

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dke70asudkuq0"]
+
+[ext_resource type="Script" uid="uid://cpieiaoqbi14f" path="res://Scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="AudioStream" uid="uid://7j5a132ra2d3" path="res://Audio/music_box_level_complete.wav" id="2_ekxnf"]
+
+[node name="main menu" type="Node2D" unique_id=1745416256]
+script = ExtResource("1_l6cm7")
+
+[node name="Control" type="Control" parent="." unique_id=366052523]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="continue" type="Button" parent="Control" unique_id=1932767316]
+visible = false
+layout_mode = 0
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 650.0
+offset_bottom = 360.0
+text = "continue"
+
+[node name="new game" type="Button" parent="Control" unique_id=2102306511]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 364.0
+offset_right = 650.0
+offset_bottom = 424.0
+text = "start game"
+
+[node name="restart" type="Button" parent="Control" unique_id=1570528056]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 428.0
+offset_right = 650.0
+offset_bottom = 488.0
+text = "Restart"
+
+[node name="sound" type="Button" parent="Control" unique_id=1910627285]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 492.0
+offset_right = 650.0
+offset_bottom = 552.0
+text = "Mute all"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=800529894]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 560.0
+offset_right = 842.0
+offset_bottom = 600.0
+text = "Game is meant to be played with dialog sound on"
+
+[node name="test audio" type="AudioStreamPlayer2D" parent="." unique_id=2003523905]
+stream = ExtResource("2_ekxnf")
+autoplay = true
+
+[connection signal="pressed" from="Control/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Control/new game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Control/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/sound" to="." method="_on_sound_pressed"]
