@@ -1,10 +1,19 @@
 extends CharacterBody2D
 
+@onready var player: CharacterBody2D = $"."
+@onready var checkpoint: Node2D = $"../checkpoint"
+@onready var die: AudioStreamPlayer2D = $die
+@onready var revive: AudioStreamPlayer2D = $revive
+
+
 const SPEED = 300.0
 const ACCEL = 75.0
 const FRICTION = 32.5
 const JUMP_VELOCITY = -400.0
 const SKEW_MAX = 0.125
+const RESPAWN_TIME = 1.0
+var checkpoint_position = null
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -20,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, SPEED * direction, ACCEL)
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
-	
+		
 	var skew = 0
 	if velocity.x != 0:
 		var abs_vel_x = abs(velocity.x)
@@ -35,7 +44,25 @@ func _physics_process(delta: float) -> void:
 		skew,
 		transform.get_origin()
 	)
+	move_and_slide()
 	
+	#menuing
 	if Input.is_action_just_pressed("menu"):
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	move_and_slide()
+
+#Dying when player nodes enter kill floor world boundry colission
+func _on_kill_floor_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"): #check if the node is the player, I manually added player = player group 
+		print("player_die")
+		die.play()
+		respawn()
+
+#respawing to the position of the checkpoint, the checkpoint system still needs to be devloped (no script there yet)
+func respawn():
+	await get_tree().create_timer(RESPAWN_TIME).timeout
+	var checkpoint_position = checkpoint.global_position #only one manual checkpoint for now
+	player.global_position = checkpoint_position
+	revive.play()
+	
+	
+	

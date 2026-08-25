@@ -47,9 +47,6 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yee32"]
-size = Vector2(33, 33)
-
 [node name="player" type="CharacterBody2D" unique_id=196288899 groups=["player"]]
 physics_interpolation_mode = 1
 script = ExtResource("1_v6fml")
@@ -66,9 +63,3 @@ stream = ExtResource("3_mdl7e")
 
 [node name="die" type="AudioStreamPlayer2D" parent="." unique_id=1319357053]
 stream = ExtResource("4_qu4a1")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=235714086]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=693426899]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_yee32")

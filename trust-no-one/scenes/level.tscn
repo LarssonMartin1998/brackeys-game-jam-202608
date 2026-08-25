@@ -72,6 +72,8 @@ _data = {
 &"default": SubResource("Animation_2r41h")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rr6fv"]
+
 [node name="level_1" type="Node2D" unique_id=934745453]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=152978685]
@@ -127,3 +129,11 @@ libraries/ = SubResource("AnimationLibrary_klq6b")
 
 [node name="checkpoint" parent="." unique_id=1169061525 instance=ExtResource("7_klq6b")]
 position = Vector2(477, 454)
+
+[node name="kill_floor_area" type="Area2D" parent="." unique_id=524135982]
+
+[node name="kill _foor_collision" type="CollisionShape2D" parent="kill_floor_area" unique_id=1121057243]
+position = Vector2(275, 743)
+shape = SubResource("WorldBoundaryShape2D_rr6fv")
+
+[connection signal="body_entered" from="kill_floor_area" to="CharacterBody2D" method="_on_kill_floor_area_body_entered"]
