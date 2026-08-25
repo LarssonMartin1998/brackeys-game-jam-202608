@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dicnysxbkm6xp" path="res://Assets/Tiles.png" id="5_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://c8wxk5ext7jxs" path="res://scenes/Player.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://brd5kb7npseim" path="res://scenes/trap_1.tscn" id="6_klq6b"]
+[ext_resource type="PackedScene" uid="uid://c27hacbg7efof" path="res://scenes/checkpoint.tscn" id="7_klq6b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r41h"]
 texture = ExtResource("5_ppgk2")
@@ -121,4 +122,8 @@ position_smoothing_enabled = true
 position = Vector2(974, 498)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="trap_2" unique_id=1108109153]
+reset_on_save = false
 libraries/ = SubResource("AnimationLibrary_klq6b")
+
+[node name="checkpoint" parent="." unique_id=1169061525 instance=ExtResource("7_klq6b")]
+position = Vector2(477, 454)

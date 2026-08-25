@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c27hacbg7efof"]
+
+[ext_resource type="Texture2D" uid="uid://clgioqejudre3" path="res://Assets/checkpoint_lamp.png" id="1_yyywg"]
+
+[node name="checkpoint" type="Node2D" unique_id=1169061525]
+
+[node name="checkpoint" type="Sprite2D" parent="." unique_id=725823925]
+scale = Vector2(1.375, 1.6129032)
+texture = ExtResource("1_yyywg")
+region_enabled = true
+region_rect = Rect2(0, 32.002003, 32, 31.997997)
+
+[node name="uncheckpoint" type="Sprite2D" parent="." unique_id=867038447]
+scale = Vector2(1.375, 1.6130002)
+texture = ExtResource("1_yyywg")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 31.98)
