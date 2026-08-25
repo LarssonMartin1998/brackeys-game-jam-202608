@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://brd5kb7npseim"]
+
+[ext_resource type="Script" uid="uid://c8i75de8v4y2s" path="res://Scripts/trap_1.gd" id="1_r07xg"]
+[ext_resource type="Texture2D" uid="uid://cbapcoph6l753" path="res://Assets/platforms.png" id="1_y3yn5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6fv"]
+size = Vector2(309, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yee32"]
+size = Vector2(310, 39)
+
+[node name="trap_1" type="StaticBody2D" unique_id=1837422478]
+script = ExtResource("1_r07xg")
+
+[node name="platform" type="Sprite2D" parent="." unique_id=183041418]
+scale = Vector2(11, 10.500001)
+texture = ExtResource("1_y3yn5")
+region_enabled = true
+region_rect = Rect2(3.9357743, 20.921192, 28.064226, 4.168726)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1587165138]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rr6fv")
+
+[node name="detection_area" type="Area2D" parent="." unique_id=44404663]
+
+[node name="detection_colission" type="CollisionShape2D" parent="detection_area" unique_id=2007081642]
+position = Vector2(0, -40.5)
+shape = SubResource("RectangleShape2D_yee32")
+debug_color = Color(0.7399454, 0.46525174, 0.10737584, 0.41960785)
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
