@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @onready var player: CharacterBody2D = $"."
 @onready var checkpoint: Node2D = $"../checkpoint"
-@onready var die: AudioStreamPlayer2D = $die
+@onready var die_sfx: AudioStreamPlayer2D = $die_sfx
 @onready var revive: AudioStreamPlayer2D = $revive
-
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const SPEED = 300.0
 const ACCEL = 75.0
@@ -13,10 +13,19 @@ const JUMP_VELOCITY = -400.0
 const SKEW_MAX = 0.125
 const RESPAWN_TIME = 1.0
 var checkpoint_position = null
+var alive = true
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	if alive==false:
+		animated_sprite_2d.rotation += 5 * delta
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+		
+	else:
+		animated_sprite_2d.rotation = 0.0
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	# Handle jump.
@@ -54,15 +63,34 @@ func _physics_process(delta: float) -> void:
 func _on_kill_floor_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"): #check if the node is the player, I manually added player = player group 
 		print("player_die")
-		die.play()
-		respawn()
+		die_sfx.play()
+		#needs a dead state (removing controls from player, maybe a spin/flip out)
+		animated_sprite_2d.play("die")
+		die()
+
+#getting hit function sent by other tscn 
+func die():
+	alive = false
+	animated_sprite_2d.play("die")
+	die_sfx.play()
+	respawn()
+
 
 #respawing to the position of the checkpoint, the checkpoint system still needs to be devloped (no script there yet)
 func respawn():
 	await get_tree().create_timer(RESPAWN_TIME).timeout
+	alive = true
+	animated_sprite_2d.play("respawn")
 	var checkpoint_position = checkpoint.global_position #only one manual checkpoint for now
 	player.global_position = checkpoint_position
 	revive.play()
+	await get_tree().create_timer(3.0).timeout
+	animated_sprite_2d.play("default")
+
+	
+	
+	
+	
 	
 	
 	

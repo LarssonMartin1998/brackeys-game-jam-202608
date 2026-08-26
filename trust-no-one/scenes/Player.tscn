@@ -28,23 +28,23 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mdl7e")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"die",
-"speed": 1.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qu4a1")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"respawn",
-"speed": 1.0
+"speed": 30.0
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=196288899 groups=["player"]]
@@ -57,9 +57,10 @@ shape = SubResource("RectangleShape2D_uhnuv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=597603607]
 sprite_frames = SubResource("SpriteFrames_rr6fv")
+autoplay = "default"
 
 [node name="revive" type="AudioStreamPlayer2D" parent="." unique_id=619637497]
 stream = ExtResource("3_mdl7e")
 
-[node name="die" type="AudioStreamPlayer2D" parent="." unique_id=1319357053]
+[node name="die_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1319357053]
 stream = ExtResource("4_qu4a1")
