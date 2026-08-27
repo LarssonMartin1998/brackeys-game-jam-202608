@@ -34,6 +34,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_below_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player")and not spiked_2:
-		spiked_2 = true
+		spiked_2 = false
 		animation_player_2.play("spiked_2")
 		print("body_spiked_2")
