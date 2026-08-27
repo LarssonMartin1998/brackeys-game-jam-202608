@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dx4uu"]
 resource_name = "spiked"
-length = 0.16666667
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,7 +32,7 @@ tracks/0/path = NodePath("Spikes:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.11),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1.500001, -1.4999993), Vector2(1.500001, -38.5)]
@@ -49,6 +49,9 @@ size = Vector2(7.868785, 4.0160894)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yee32"]
 size = Vector2(69, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve03a"]
+size = Vector2(31, 26)
 
 [node name="spike_1" type="StaticBody2D" unique_id=482699169]
 script = ExtResource("1_ggsbj")
@@ -87,4 +90,13 @@ position = Vector2(1.5, -36)
 shape = SubResource("RectangleShape2D_yee32")
 debug_color = Color(0.8238541, 0.39652413, 0.13695458, 0.41960785)
 
+[node name="Area2D_below" type="Area2D" parent="." unique_id=493266838]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_below" unique_id=1759823471]
+position = Vector2(5.5, 31)
+shape = SubResource("RectangleShape2D_ve03a")
+debug_color = Color(0, 0.64343065, 0.30984062, 0.41960785)
+
+[connection signal="spiked" from="." to="." method="_on_spiked"]
 [connection signal="body_entered" from="detection_node" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D_below" to="." method="_on_area_2d_below_body_entered"]
