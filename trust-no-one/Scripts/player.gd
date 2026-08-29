@@ -4,6 +4,10 @@ extends CharacterBody2D
 @onready var die_sfx: AudioStreamPlayer2D = $die_sfx
 @onready var revive: AudioStreamPlayer2D = $revive
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var Narrator: AudioStreamPlayer = $"../NarratorScene"
+@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
+@onready var god_rays: Sprite2D = $"../CanvasLayer/god_rays"
+
 
 const SPEED = 300.0
 const ACCEL = 75.0
@@ -73,7 +77,10 @@ func _on_kill_floor_area_body_entered(body: Node2D) -> void:
 	#needs a dead state (removing controls from player, maybe a spin/flip out)
 	animated_sprite_2d.play("die")
 	die()
+	god_rays.visible = true
 	Narrator.play_line(Narrator.LineType.DEATH_KILL_FLOOR)
+	await get_tree().create_timer(2.0).timeout
+	god_rays.visible = false
 
 #getting hit function sent by other tscn 
 func die():

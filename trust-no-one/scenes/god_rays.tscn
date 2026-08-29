@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://clnvsa2x31mu6"]
+
+[ext_resource type="Shader" uid="uid://bl03rqvdwdouh" path="res://Scripts/godrays_shader.gdshader" id="1_527ms"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbnd5"]
+shader = ExtResource("1_527ms")
+shader_parameter/angle = 0.98
+shader_parameter/position = 0.345
+shader_parameter/spread = 0.1050000049875
+shader_parameter/cutoff = -0.15499995986250004
+shader_parameter/falloff = 0.2730000129675
+shader_parameter/edge_fade = 0.9630000457425
+shader_parameter/speed = 1.995
+shader_parameter/ray1_density = 21.6
+shader_parameter/ray2_density = 41.52
+shader_parameter/ray2_intensity = 1.0
+shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1552040060]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=549868176]
+material = SubResource("ShaderMaterial_cbnd5")
+offset_left = -12.0
+offset_top = -5.0
+offset_right = 1164.0
+offset_bottom = 659.0
+color = Color(1, 0.18039216, 0.14117648, 0.39607844)
