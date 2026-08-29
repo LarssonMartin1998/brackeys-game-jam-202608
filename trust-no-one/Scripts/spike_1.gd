@@ -3,12 +3,13 @@ extends StaticBody2D
 @onready var hitbox: CollisionShape2D = $Spikes/hitbox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
+@onready var god_rays: Sprite2D = $"../CanvasLayer/god_rays"
 
 
 var death = 1
 var ready_1 = false
 var spiked_1 = false
-var spiked_2 = false
+var spiked_2 = false 
 
 signal spiked
 
@@ -25,15 +26,26 @@ func _on_trap_activated():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and not spiked_1:
-		spiked_1 = true
 		animation_player.play("spiked")
 		print("body_spiked_1")
 		spiked.emit()
 	if body.has_method("die"):
 		body.die()
+		if not spiked_1:
+			spiked_1 = true
+			god_rays.visible = true
+			Narrator.play_line(Narrator.LineType.DEATH_SPIKE)
+			await get_tree().create_timer(2.0).timeout
+			god_rays.visible = false
+		
 
 func _on_area_2d_below_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player")and not spiked_2:
-		spiked_2 = false
+	if body.is_in_group("player"):
 		animation_player_2.play("spiked_2")
 		print("body_spiked_2")
+		if not spiked_2:
+			spiked_2 = true
+			god_rays.visible = true
+			Narrator.play_line(Narrator.LineType.LOL)
+			await get_tree().create_timer(2.0).timeout
+			god_rays.visible = false

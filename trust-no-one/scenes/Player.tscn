@@ -61,6 +61,8 @@ autoplay = "default"
 
 [node name="revive" type="AudioStreamPlayer2D" parent="." unique_id=619637497]
 stream = ExtResource("3_mdl7e")
+bus = &"SFX"
 
 [node name="die_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1319357053]
 stream = ExtResource("4_qu4a1")
+bus = &"SFX"

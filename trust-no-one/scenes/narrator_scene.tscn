@@ -1,12 +1,25 @@
 [gd_scene format=3 uid="uid://bjckoq3a55vrj"]
 
 [ext_resource type="Script" uid="uid://dtyy23yecegm" path="res://Scripts/narrator.gd" id="1_70phn"]
-[ext_resource type="AudioStream" uid="uid://cok83j56rgw8q" path="res://Audio/killfloor_taunt_01.wav" id="2_wlq5v"]
-[ext_resource type="AudioStream" uid="uid://bgsxqs3hntt8p" path="res://Audio/killfloor_taunt_02.wav" id="3_7uqpt"]
-[ext_resource type="AudioStream" uid="uid://buanpan3tc3vh" path="res://Audio/killfloor_taunt_03.wav" id="4_2212s"]
-[ext_resource type="AudioStream" uid="uid://diyqxqpnsbi3m" path="res://Audio/killfloor_taunt_04.wav" id="5_cgh0n"]
-[ext_resource type="AudioStream" uid="uid://cgkxxswqkuoki" path="res://Audio/killfloor_taunt_05.wav" id="6_qxcvf"]
+[ext_resource type="AudioStream" uid="uid://carwkipbfvc1d" path="res://Assets/audio/double jump1.wav" id="2_qxcvf"]
+[ext_resource type="AudioStream" uid="uid://cr8mvbigj48ug" path="res://Assets/audio/first checkpoint.wav" id="3_cgh0n"]
+[ext_resource type="AudioStream" uid="uid://cs2omsqjss0jh" path="res://Audio/played games.wav" id="3_g420t"]
+[ext_resource type="AudioStream" uid="uid://cqplrotsqclq4" path="res://Audio/slow_clap.wav" id="4_wlq5v"]
+[ext_resource type="AudioStream" uid="uid://b3wodntpyykiu" path="res://Audio/try.wav" id="5_7uqpt"]
+[ext_resource type="AudioStream" uid="uid://csgvsy748afrv" path="res://Audio/lol.wav" id="5_g420t"]
+[ext_resource type="AudioStream" uid="uid://y6qsqdp7g61g" path="res://Assets/audio/2nd trap.wav" id="6_7uqpt"]
+[ext_resource type="AudioStream" uid="uid://3cv21gkun4st" path="res://Assets/audio/intro.wav" id="7_2212s"]
+[ext_resource type="AudioStream" uid="uid://cexcxmsvvp1l3" path="res://Assets/audio/first_trap.wav" id="7_cgh0n"]
+[ext_resource type="AudioStream" uid="uid://d06j6qiaaedvx" path="res://Assets/audio/ha lol.wav.wav" id="9_cgh0n"]
+[ext_resource type="AudioStream" uid="uid://bgc2qko1undnc" path="res://Assets/audio/suprise.wav" id="12_ub7nl"]
 
 [node name="NarratorScene" type="AudioStreamPlayer" unique_id=673513881]
 script = ExtResource("1_70phn")
-death_lines_kill_floor = Array[AudioStream]([ExtResource("2_wlq5v"), ExtResource("3_7uqpt"), ExtResource("4_2212s"), ExtResource("5_cgh0n"), ExtResource("6_qxcvf")])
+intro = Array[AudioStream]([ExtResource("2_qxcvf")])
+tutorial = Array[AudioStream]([ExtResource("7_2212s")])
+death_lines_kill_floor = Array[AudioStream]([ExtResource("3_g420t"), ExtResource("4_wlq5v"), ExtResource("5_7uqpt"), ExtResource("5_g420t")])
+first_trap = Array[AudioStream]([ExtResource("7_cgh0n")])
+death_lines_spikes = Array[AudioStream]([ExtResource("6_7uqpt")])
+checkpoint_1 = Array[AudioStream]([ExtResource("3_cgh0n")])
+lol = Array[AudioStream]([ExtResource("9_cgh0n")])
+checkpoint_2 = Array[AudioStream]([ExtResource("12_ub7nl")])

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clgioqejudre3" path="res://Assets/checkpoint_lamp.png" id="1_yyywg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ry61"]
-size = Vector2(12, 53)
+size = Vector2(12, 125)
 
 [node name="checkpoint" type="Area2D" unique_id=348229416]
 script = ExtResource("1_ywqth")
@@ -22,5 +22,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 31.98)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1600888803]
-position = Vector2(0, -0.5)
+position = Vector2(0, -36.5)
 shape = SubResource("RectangleShape2D_3ry61")
+
+[connection signal="narration" from="." to="." method="_on_narration"]

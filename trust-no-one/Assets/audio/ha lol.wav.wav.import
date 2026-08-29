@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d06j6qiaaedvx"
+path="res://.godot/imported/ha lol.wav.wav-de6c6ab3e0f594f1b82211f63e891c6f.sample"
+
+[deps]
+
+source_file="res://Assets/audio/ha lol.wav.wav"
+dest_files=["res://.godot/imported/ha lol.wav.wav-de6c6ab3e0f594f1b82211f63e891c6f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

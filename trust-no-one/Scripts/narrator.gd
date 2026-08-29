@@ -1,9 +1,16 @@
 extends AudioStreamPlayer
 
+@export var intro: Array[AudioStream]
+@export var tutorial: Array[AudioStream]
 @export var death_lines_kill_floor: Array[AudioStream]
+@export var first_trap: Array[AudioStream]
 @export var death_lines_spikes: Array[AudioStream]
-@export var checkpoint_lines: Array[AudioStream]
+@export var checkpoint_1: Array[AudioStream]
 @export var generic_trigger_lines: Array[AudioStream]
+@export var lol: Array[AudioStream]
+@export var checkpoint_2: Array[AudioStream]
+
+
 
 
 class AudioStreamContainer:
@@ -29,18 +36,28 @@ class AudioStreamContainer:
 enum LineType { 
 	DEATH_SPIKE,
 	DEATH_KILL_FLOOR,
-	NEW_CHECKPOINT,
+	CHECKPOINT_1,
 	GENERIC_TRIGGER_VOLUME,
+	FIRST_TRAP,
+	INTRO,
+	LOL,
+	TUTORIAL,
+	CHECKPOINT_2
 }
 var line_overrides: Dictionary[LineType, AudioStream]
 var generic_lines: Dictionary[LineType, AudioStreamContainer]
 
 func _ready() -> void:
 	var audio_pairings := {
+		LineType.CHECKPOINT_2:checkpoint_2,
+		LineType.TUTORIAL:tutorial,
+		LineType.LOL:lol,
+		LineType.INTRO:intro,
 		LineType.DEATH_SPIKE:death_lines_spikes,
 		LineType.DEATH_KILL_FLOOR:death_lines_kill_floor,
-		LineType.NEW_CHECKPOINT:checkpoint_lines,
+		LineType.CHECKPOINT_1:checkpoint_1,
 		LineType.GENERIC_TRIGGER_VOLUME:generic_trigger_lines,
+		LineType.FIRST_TRAP:first_trap
 	}
 	for line_type in audio_pairings:
 		var streams = audio_pairings[line_type]
@@ -61,8 +78,9 @@ func play_line(line_type: LineType):
 	if audio_stream == null:
 		print("found null audio stream in play_line")
 		return	
-	set_stream(audio_stream)
-	play()
+	else:
+		set_stream(audio_stream)
+		play()
 
 func add_override(line_type: LineType, audio_stream: AudioStream):
 	line_overrides[line_type] = audio_stream
