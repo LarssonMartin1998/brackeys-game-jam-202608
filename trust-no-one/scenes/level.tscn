@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://brd5kb7npseim" path="res://scenes/trap_1.tscn" id="6_klq6b"]
 [ext_resource type="PackedScene" uid="uid://c27hacbg7efof" path="res://scenes/checkpoint.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://b4k2tokigtp1m" path="res://scenes/spike_1.tscn" id="8_b121j"]
-[ext_resource type="PackedScene" uid="uid://bjckoq3a55vrj" path="res://scenes/narrator_scene.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://clnvsa2x31mu6" path="res://scenes/god_rays.tscn" id="11_t1rx8"]
 [ext_resource type="Script" uid="uid://crw7peww3u1q4" path="res://Scripts/subtitle_label.gd" id="9_sub"]
 
@@ -276,7 +275,5 @@ libraries/ = SubResource("AnimationLibrary_olg7q")
 
 [node name="checkpoint2" parent="." unique_id=348229416 instance=ExtResource("7_klq6b")]
 position = Vector2(1479, 452)
-
-[node name="NarratorScene" parent="." unique_id=673513881 instance=ExtResource("10_olg7q")]
 
 [connection signal="body_entered" from="kill_floor_area" to="CharacterBody2D" method="_on_kill_floor_area_body_entered"]
