@@ -42,6 +42,8 @@ enum LineType {
 var line_overrides: Dictionary[LineType, NarratorLine]
 var generic_lines: Dictionary[LineType, LinePool]
 
+var is_line_playing = false
+
 func _ready() -> void:
 	finished.connect(_on_finished)
 	var line_pairings := {
@@ -66,16 +68,20 @@ func _get_line_for_line_type(line_type: LineType) -> NarratorLine:
 	return generic_lines[line_type].get_line()
 
 func play_line(line_type: LineType):
+	if is_line_playing:
+		return
 	var line = _get_line_for_line_type(line_type)
 	if line == null or line.stream == null:
 		print("found null narrator line in play_line")
 		return
 	stream = line.stream
 	play()
+	is_line_playing = true
 	line_started.emit(line.subtitle)
 
 func _on_finished():
 	line_finished.emit()
+	is_line_playing = false
 
 func add_override(line_type: LineType, line: NarratorLine):
 	line_overrides[line_type] = line
