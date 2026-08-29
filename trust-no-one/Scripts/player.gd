@@ -73,6 +73,7 @@ func _on_kill_floor_area_body_entered(body: Node2D) -> void:
 	#needs a dead state (removing controls from player, maybe a spin/flip out)
 	animated_sprite_2d.play("die")
 	die()
+	Narrator.play_line(Narrator.LineType.DEATH_KILL_FLOOR)
 
 #getting hit function sent by other tscn 
 func die():
