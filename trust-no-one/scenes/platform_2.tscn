@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://bkj5ghj3s8v2o"]
+
+[ext_resource type="Script" uid="uid://ioef5juue3rk" path="res://Scripts/platform_2.gd" id="1_vcjnh"]
+[ext_resource type="Texture2D" uid="uid://chow4eu0w1p1v" path="res://Assets/spikes.png" id="2_bivf0"]
+[ext_resource type="Texture2D" uid="uid://cbapcoph6l753" path="res://Assets/platforms.png" id="3_vr2yr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6fv"]
+size = Vector2(68.5, 38)
+
+[sub_resource type="Animation" id="Animation_scrrx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.500001, -1.4999993)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vcjnh"]
+resource_name = "flip"
+length = 9.266666
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22, 8.2, 9.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 3.1415927, 3.1415927, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dx4uu"]
+resource_name = "spiked"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.500001, -1.4999993), Vector2(1.500001, -38.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oju3n"]
+_data = {
+&"RESET": SubResource("Animation_scrrx"),
+&"flip": SubResource("Animation_vcjnh"),
+&"spiked": SubResource("Animation_dx4uu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhnuv"]
+size = Vector2(7.868785, 4.0160894)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yee32"]
+size = Vector2(63, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve03a"]
+size = Vector2(64, 26)
+
+[node name="spike_1" type="StaticBody2D" unique_id=482699169]
+script = ExtResource("1_vcjnh")
+
+[node name="Spikes" type="Sprite2D" parent="." unique_id=1145612739]
+position = Vector2(1.500001, -1.4999993)
+scale = Vector2(1.1698114, 1.3799998)
+texture = ExtResource("2_bivf0")
+region_enabled = true
+region_rect = Rect2(68.78435, 38.30371, 53.4972, 25.974556)
+
+[node name="hitbox" type="CollisionShape2D" parent="Spikes" unique_id=962207034]
+scale = Vector2(0.7910448, 0.67567575)
+shape = SubResource("RectangleShape2D_rr6fv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1273999138]
+libraries/ = SubResource("AnimationLibrary_oju3n")
+
+[node name="platform" type="Sprite2D" parent="." unique_id=557202084]
+scale = Vector2(8.641741, 9.710938)
+texture = ExtResource("3_vr2yr")
+region_enabled = true
+region_rect = Rect2(24.12274, 4.940346, 7.9328747, 4.04218)
+
+[node name="platform_collision" type="CollisionShape2D" parent="." unique_id=1970888947]
+scale = Vector2(8.641741, 9.710938)
+shape = SubResource("RectangleShape2D_uhnuv")
+
+[node name="detection_node" type="Area2D" parent="." unique_id=877445342]
+
+[node name="detection_area" type="CollisionShape2D" parent="detection_node" unique_id=1093263824]
+position = Vector2(-0.5, -29)
+shape = SubResource("RectangleShape2D_yee32")
+debug_color = Color(0.8238541, 0.39652413, 0.13695458, 0.41960785)
+
+[node name="Area2D_below" type="Area2D" parent="." unique_id=493266838]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_below" unique_id=1759823471]
+position = Vector2(0, 33)
+shape = SubResource("RectangleShape2D_ve03a")
+debug_color = Color(0, 0.64343065, 0.30984062, 0.41960785)
+
+[connection signal="body_entered" from="detection_node" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D_below" to="." method="_on_area_2d_below_body_entered"]

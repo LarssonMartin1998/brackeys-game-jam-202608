@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
 @onready var god_rays: Sprite2D = $"../CanvasLayer/god_rays"
 @onready var main_menu: Node2D = $"../CanvasLayer/main menu"
+@onready var win_screen: Panel = $"../CanvasLayer/win_screen"
 
 
 const SPEED = 300.0
@@ -19,19 +20,40 @@ var checkpoint_position = null
 var alive = true
 var paused = false
 var narration = false
+var controls = true
 
 func _ready():
 	CheckpointManager.visit_checkpoint(global_position) # treat players spawn pos as the first checkpoint
 	await get_tree().create_timer(0.1).timeout
 	intro()
+	
+	var trap = get_node("../trap_1")
+	trap.trapped_1.connect(on_narration_1)
+	
+	var checkpoint_1 = get_node("../checkpoint_narration")
+	checkpoint_1.narration.connect(on_narration_1)
+	
+	var spiked = get_node("../spike_1")
+	spiked.spiked.connect(on_narration_1)
+	
+	win_screen.visible = false
+	
+	
 
+func on_narration_1():
+	controls = false
+	await get_tree().create_timer(4.2).timeout
+	controls = true
+	
 func intro():
 	narration = true
+	controls = false
 	god_rays.visible = true
-	Narrator.play_line(Narrator.LineType.TUTORIAL)
-	await get_tree().create_timer(6.0).timeout
+	Narrator.play_line(Narrator.LineType.INTRO)
+	await get_tree().create_timer(5.0).timeout
 	god_rays.visible = false
 	narration = false
+	controls = true
 
 func process_death_state(delta: float):
 	animated_sprite_2d.rotation += 5 * delta
@@ -41,14 +63,17 @@ func process_falling(delta: float):
 	velocity += get_gravity() * delta
 
 func apply_movement_velocity(delta: float):
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity.y = JUMP_VELOCITY
-		
-	var dir := Input.get_axis("move_left", "move_right")
-	if (dir):
-		velocity.x = move_toward(velocity.x, SPEED * dir, ACCEL)
-	else:
-		velocity.x = move_toward(velocity.x, 0, FRICTION)
+		if not controls:
+			velocity.x = move_toward(velocity.x, 0, FRICTION)
+			return
+		if is_on_floor() and Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY
+			
+		var dir := Input.get_axis("move_left", "move_right")
+		if (dir):
+			velocity.x = move_toward(velocity.x, SPEED * dir, ACCEL)
+		else:
+			velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 func get_velocity_based_skew() -> float:
 	if velocity.x == 0:
@@ -73,15 +98,12 @@ func _physics_process(delta: float) -> void:
 		get_velocity_based_skew(),
 		transform.get_origin()
 	)
-	if not narration:
-		move_and_slide()
-	else:
-		return
+	move_and_slide()
 	
 	#menuing
-	if Input.is_action_just_pressed("menu"):
-			get_tree().paused = true
-			main_menu.visible = true
+	#if Input.is_action_just_pressed("menu"):
+			#get_tree().paused = true
+			#main_menu.visible = true
 
 func _on_kill_floor_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"): #check if the node is the player, I manually added player = player group 
@@ -111,3 +133,14 @@ func respawn():
 	animated_sprite_2d.rotation = 0.0
 	await get_tree().create_timer(3.0).timeout
 	animated_sprite_2d.play("default")
+	
+func win():
+	win_screen.visible = true
+	controls = false
+	Narrator.play_line(Narrator.LineType.WIN)
+	
+func _on_play_again_pressed() -> void:
+	controls = true
+	get_tree().change_scene_to_file("res://scenes/level.tscn")
+	
+	

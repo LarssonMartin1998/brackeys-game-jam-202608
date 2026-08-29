@@ -34,8 +34,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if not spiked_1:
 			spiked_1 = true
 			god_rays.visible = true
-			Narrator.play_line(Narrator.LineType.DEATH_SPIKE)
-			await get_tree().create_timer(2.0).timeout
+			Narrator.play_line(Narrator.LineType.SPIKE_2)
+			await get_tree().create_timer(6.0).timeout
 			god_rays.visible = false
 		
 
@@ -46,6 +46,6 @@ func _on_area_2d_below_body_entered(body: Node2D) -> void:
 		if not spiked_2:
 			spiked_2 = true
 			god_rays.visible = true
-			Narrator.play_line(Narrator.LineType.LOL)
-			await get_tree().create_timer(2.0).timeout
+			Narrator.play_line(Narrator.LineType.SPIKE_1)
+			await get_tree().create_timer(4.0).timeout
 			god_rays.visible = false

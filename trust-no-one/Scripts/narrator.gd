@@ -12,6 +12,8 @@ signal line_finished()
 @export var trap_1: Array[NarratorLine]
 @export var spike_1: Array[NarratorLine]
 @export var spike_2: Array[NarratorLine]
+@export var checkpoint_3: Array[NarratorLine]
+@export var win: Array[NarratorLine]
 
 class LinePool:
 	var all_lines: Array[NarratorLine]
@@ -43,6 +45,8 @@ enum LineType {
 	CHECKPOINT_2,
 	SPIKE_1,
 	SPIKE_2,
+	CHECKPOINT_3,
+	WIN
 }
 var line_overrides: Dictionary[LineType, NarratorLine]
 var generic_lines: Dictionary[LineType, LinePool]
@@ -56,8 +60,10 @@ func _ready() -> void:
 		LineType.DEATH_KILL_FLOOR:death_lines_kill_floor,
 		LineType.GENERIC_TRIGGER_VOLUME:generic_trigger_lines,
 		LineType.INTRO:intro,
+		LineType.WIN:win,
 		LineType.CHECKPOINT_1:checkpoint_1,
-		LineType.CHECKPOINT_2:checkpoint_1,
+		LineType.CHECKPOINT_2:checkpoint_2,
+		LineType.CHECKPOINT_3:checkpoint_3,
 		LineType.TRAP_1:trap_1,
 		LineType.SPIKE_1:spike_1,
 		LineType.SPIKE_2:spike_2,

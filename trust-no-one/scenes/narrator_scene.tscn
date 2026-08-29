@@ -7,6 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://cs2omsqjss0jh" path="res://Audio/played games.wav" id="5_wlq5v"]
 [ext_resource type="AudioStream" uid="uid://b3wodntpyykiu" path="res://Audio/try.wav" id="6_7uqpt"]
 [ext_resource type="AudioStream" uid="uid://cf5a0nsae21m2" path="res://Audio/easy mode.wav" id="7_7uqpt"]
+[ext_resource type="AudioStream" uid="uid://cr8mvbigj48ug" path="res://Assets/audio/first checkpoint.wav" id="8_esc7h"]
+[ext_resource type="AudioStream" uid="uid://b2rjhq7kkaear" path="res://Assets/audio/checkpoint_2.wav" id="9_esc7h"]
+[ext_resource type="AudioStream" uid="uid://bgc2qko1undnc" path="res://Assets/audio/suprise.wav" id="9_sfpr4"]
+[ext_resource type="AudioStream" uid="uid://3cv21gkun4st" path="res://Assets/audio/intro.wav" id="10_m38sx"]
+[ext_resource type="AudioStream" uid="uid://cexcxmsvvp1l3" path="res://Assets/audio/first_trap.wav" id="11_okkhk"]
+[ext_resource type="AudioStream" uid="uid://y6qsqdp7g61g" path="res://Assets/audio/2nd trap.wav" id="12_01on1"]
+[ext_resource type="AudioStream" uid="uid://d06j6qiaaedvx" path="res://Assets/audio/ha lol.wav.wav" id="13_sncm3"]
 
 [sub_resource type="Resource" id="Resource_crry3"]
 script = ExtResource("2_uyow7")
@@ -38,6 +45,54 @@ stream = ExtResource("7_7uqpt")
 subtitle = "I should have made an easy mode"
 metadata/_custom_type_script = "uid://bi1qqewkr37ft"
 
+[sub_resource type="Resource" id="Resource_cp1pf"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("8_esc7h")
+subtitle = "Nice, now you need to get to the next checkpoint, try jumping to the next platform."
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
+[sub_resource type="Resource" id="Resource_gpcaj"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("9_esc7h")
+subtitle = "What ?! how did you do that ? I didn't play test enough"
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
+[sub_resource type="Resource" id="Resource_ya1nm"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("10_m38sx")
+subtitle = "Hello there ! I am the developer. I will show you how to win the game. Try to get to the first checkpoint."
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
+[sub_resource type="Resource" id="Resource_8doov"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("11_okkhk")
+subtitle = "Ha ha ha, Lol. Ok here, trying using this platform."
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
+[sub_resource type="Resource" id="Resource_yigaa"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("13_sncm3")
+subtitle = "ha ha ha ! lol."
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
+[sub_resource type="Resource" id="Resource_onodt"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("12_01on1")
+subtitle = "I couldn't help it ! sorry. Here, this will get you across."
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
+[sub_resource type="Resource" id="Resource_esc7h"]
+script = ExtResource("2_uyow7")
+stream = ExtResource("9_sfpr4")
+metadata/_custom_type_script = "uid://bi1qqewkr37ft"
+
 [node name="NarratorScene" type="AudioStreamPlayer" unique_id=673513881]
 script = ExtResource("1_70phn")
 death_lines_kill_floor = Array[ExtResource("2_uyow7")]([SubResource("Resource_crry3"), SubResource("Resource_p78st"), SubResource("Resource_g420t"), SubResource("Resource_2212s"), SubResource("Resource_wlq5v")])
+checkpoint_1 = Array[ExtResource("2_uyow7")]([SubResource("Resource_cp1pf")])
+checkpoint_2 = Array[ExtResource("2_uyow7")]([SubResource("Resource_gpcaj")])
+intro = Array[ExtResource("2_uyow7")]([SubResource("Resource_ya1nm")])
+trap_1 = Array[ExtResource("2_uyow7")]([SubResource("Resource_8doov")])
+spike_1 = Array[ExtResource("2_uyow7")]([SubResource("Resource_yigaa")])
+spike_2 = Array[ExtResource("2_uyow7")]([SubResource("Resource_onodt")])
+win = Array[ExtResource("2_uyow7")]([SubResource("Resource_esc7h")])

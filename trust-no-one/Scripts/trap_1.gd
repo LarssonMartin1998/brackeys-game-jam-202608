@@ -14,8 +14,8 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		animation_player.play("default")
 		trapped_1.emit()
 		god_rays.visible = true
-		Narrator.play_line(Narrator.LineType.FIRST_TRAP)
-		await get_tree().create_timer(2.0).timeout
+		Narrator.play_line(Narrator.LineType.TRAP_1)
+		await get_tree().create_timer(6.0).timeout
 		god_rays.visible = false
 
 

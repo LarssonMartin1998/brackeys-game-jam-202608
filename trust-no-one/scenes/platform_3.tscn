@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d0lgr7bnyn7h"]
+
+[ext_resource type="Texture2D" uid="uid://cbapcoph6l753" path="res://Assets/platforms.png" id="1_rydyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6fv"]
+size = Vector2(80, 22)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1897764644]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=347600668]
+scale = Vector2(4.4444447, 5.5)
+texture = ExtResource("1_rydyx")
+region_enabled = true
+region_rect = Rect2(13.932753, 20.952267, 18.067247, 4.1012783)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=769867617]
+shape = SubResource("RectangleShape2D_rr6fv")

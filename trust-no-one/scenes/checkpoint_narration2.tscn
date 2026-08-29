@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dtafxdktqmijw"]
+
+[ext_resource type="Script" uid="uid://dt4p71hesl0no" path="res://Scripts/checkpoint_narration_2.gd" id="1_gpcaj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6fv"]
+size = Vector2(20, 115)
+
+[node name="checkpoint_narration" type="Area2D" unique_id=1276974487]
+script = ExtResource("1_gpcaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1368796487]
+position = Vector2(0, -47.5)
+shape = SubResource("RectangleShape2D_rr6fv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

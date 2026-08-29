@@ -34,5 +34,3 @@ func _on_dialogue_pressed() -> void:
 func _on_continue_pressed() -> void:
 	get_tree().paused = false
 	hide()
-	
-	
