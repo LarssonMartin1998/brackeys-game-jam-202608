@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://brd5kb7npseim" path="res://scenes/trap_1.tscn" id="6_klq6b"]
 [ext_resource type="PackedScene" uid="uid://c27hacbg7efof" path="res://scenes/checkpoint.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://b4k2tokigtp1m" path="res://scenes/spike_1.tscn" id="8_b121j"]
-[ext_resource type="PackedScene" uid="uid://clnvsa2x31mu6" path="res://scenes/god_rays.tscn" id="11_t1rx8"]
 [ext_resource type="Script" uid="uid://crw7peww3u1q4" path="res://Scripts/subtitle_label.gd" id="9_sub"]
+[ext_resource type="PackedScene" uid="uid://clnvsa2x31mu6" path="res://scenes/god_rays.tscn" id="11_t1rx8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r41h"]
 texture = ExtResource("5_ppgk2")
@@ -194,7 +194,7 @@ visible = false
 position = Vector2(5, 6)
 
 [node name="Subtitle" type="Label" parent="CanvasLayer" unique_id=709182337]
-anchor_left = 0.0
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -204,6 +204,10 @@ offset_right = -48.0
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 21
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2

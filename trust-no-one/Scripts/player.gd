@@ -23,7 +23,7 @@ var narration = false
 func _ready():
 	CheckpointManager.visit_checkpoint(global_position) # treat players spawn pos as the first checkpoint
 	await get_tree().create_timer(0.1).timeout
-	#intro()
+	intro()
 
 func intro():
 	narration = true
