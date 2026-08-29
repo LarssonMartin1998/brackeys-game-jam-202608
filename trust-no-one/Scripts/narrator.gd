@@ -1,39 +1,34 @@
 extends AudioStreamPlayer
 
-@export var intro: Array[AudioStream]
-@export var tutorial: Array[AudioStream]
-@export var death_lines_kill_floor: Array[AudioStream]
-@export var first_trap: Array[AudioStream]
-@export var death_lines_spikes: Array[AudioStream]
-@export var checkpoint_1: Array[AudioStream]
-@export var generic_trigger_lines: Array[AudioStream]
-@export var lol: Array[AudioStream]
-@export var checkpoint_2: Array[AudioStream]
+signal line_started(subtitle: String)
+signal line_finished()
 
+@export var death_lines_kill_floor: Array[NarratorLine]
+@export var death_lines_spikes: Array[NarratorLine]
+@export var checkpoint_lines: Array[NarratorLine]
+@export var generic_trigger_lines: Array[NarratorLine]
 
-
-
-class AudioStreamContainer:
-	var all_audio_streams: Array[AudioStream]
-	var available_audio_streams: Array[AudioStream]
-	func _init(audio_streams: Array[AudioStream]):
-		all_audio_streams = audio_streams.duplicate()
+class LinePool:
+	var all_lines: Array[NarratorLine]
+	var available_lines: Array[NarratorLine]
+	func _init(lines: Array[NarratorLine]):
+		all_lines = lines.duplicate()
 		_reset()
 
 	func _reset():
-		available_audio_streams = all_audio_streams.duplicate()
-		available_audio_streams.shuffle()
-	
-	func get_audio_stream() -> AudioStream:
-		if available_audio_streams.is_empty():
-			_reset()
-		if available_audio_streams.is_empty():
-			return null
-		var audio_stream = available_audio_streams[0]
-		available_audio_streams.remove_at(0)
-		return audio_stream
+		available_lines = all_lines.duplicate()
+		available_lines.shuffle()
 
-enum LineType { 
+	func get_line() -> NarratorLine:
+		if available_lines.is_empty():
+			_reset()
+		if available_lines.is_empty():
+			return null
+		var line = available_lines[0]
+		available_lines.remove_at(0)
+		return line
+
+enum LineType {
 	DEATH_SPIKE,
 	DEATH_KILL_FLOOR,
 	CHECKPOINT_1,
@@ -44,43 +39,43 @@ enum LineType {
 	TUTORIAL,
 	CHECKPOINT_2
 }
-var line_overrides: Dictionary[LineType, AudioStream]
-var generic_lines: Dictionary[LineType, AudioStreamContainer]
+var line_overrides: Dictionary[LineType, NarratorLine]
+var generic_lines: Dictionary[LineType, LinePool]
 
 func _ready() -> void:
-	var audio_pairings := {
-		LineType.CHECKPOINT_2:checkpoint_2,
-		LineType.TUTORIAL:tutorial,
-		LineType.LOL:lol,
-		LineType.INTRO:intro,
+	finished.connect(_on_finished)
+	var line_pairings := {
 		LineType.DEATH_SPIKE:death_lines_spikes,
 		LineType.DEATH_KILL_FLOOR:death_lines_kill_floor,
 		LineType.CHECKPOINT_1:checkpoint_1,
 		LineType.GENERIC_TRIGGER_VOLUME:generic_trigger_lines,
 		LineType.FIRST_TRAP:first_trap
 	}
-	for line_type in audio_pairings:
-		var streams = audio_pairings[line_type]
-		generic_lines[line_type] = AudioStreamContainer.new(streams)
-		streams.clear()
+	for line_type in line_pairings:
+		var lines = line_pairings[line_type]
+		generic_lines[line_type] = LinePool.new(lines)
+		lines.clear()
 
-func _get_audio_stream_for_line_type(line_type: LineType) -> AudioStream:
+func _get_line_for_line_type(line_type: LineType) -> NarratorLine:
 	if line_overrides.has(line_type):
 		var override = line_overrides[line_type]
 		line_overrides.erase(line_type)
 		return override
 	if not generic_lines.has(line_type):
 		return null
-	return generic_lines[line_type].get_audio_stream()
+	return generic_lines[line_type].get_line()
 
 func play_line(line_type: LineType):
-	var audio_stream = _get_audio_stream_for_line_type(line_type)
-	if audio_stream == null:
-		print("found null audio stream in play_line")
-		return	
-	else:
-		set_stream(audio_stream)
-		play()
+	var line = _get_line_for_line_type(line_type)
+	if line == null or line.stream == null:
+		print("found null narrator line in play_line")
+		return
+	stream = line.stream
+	play()
+	line_started.emit(line.subtitle)
 
-func add_override(line_type: LineType, audio_stream: AudioStream):
-	line_overrides[line_type] = audio_stream
+func _on_finished():
+	line_finished.emit()
+
+func add_override(line_type: LineType, line: NarratorLine):
+	line_overrides[line_type] = line

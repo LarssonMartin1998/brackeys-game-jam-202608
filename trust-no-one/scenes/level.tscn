@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://brd5kb7npseim" path="res://scenes/trap_1.tscn" id="6_klq6b"]
 [ext_resource type="PackedScene" uid="uid://c27hacbg7efof" path="res://scenes/checkpoint.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://b4k2tokigtp1m" path="res://scenes/spike_1.tscn" id="8_b121j"]
-[ext_resource type="PackedScene" uid="uid://bjckoq3a55vrj" path="res://scenes/narrator_scene.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://clnvsa2x31mu6" path="res://scenes/god_rays.tscn" id="11_t1rx8"]
+[ext_resource type="Script" uid="uid://crw7peww3u1q4" path="res://Scripts/subtitle_label.gd" id="9_sub"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r41h"]
 texture = ExtResource("5_ppgk2")
@@ -193,6 +193,22 @@ visible = false
 visible = false
 position = Vector2(5, 6)
 
+[node name="Subtitle" type="Label" parent="CanvasLayer" unique_id=709182337]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -140.0
+offset_right = -48.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+script = ExtResource("9_sub")
+
 [node name="sky" type="Parallax2D" parent="." unique_id=487439880]
 scroll_scale = Vector2(0.05, 0.05)
 repeat_size = Vector2(1149, 0)
@@ -264,9 +280,5 @@ libraries/ = SubResource("AnimationLibrary_olg7q")
 
 [node name="checkpoint2" parent="." unique_id=348229416 instance=ExtResource("7_klq6b")]
 position = Vector2(1417, 452)
-
-[node name="NarratorScene" parent="." unique_id=673513881 instance=ExtResource("10_olg7q")]
-bus = &"Dialogue"
-intro = Array[AudioStream]([])
 
 [connection signal="body_entered" from="kill_floor_area" to="CharacterBody2D" method="_on_kill_floor_area_body_entered"]

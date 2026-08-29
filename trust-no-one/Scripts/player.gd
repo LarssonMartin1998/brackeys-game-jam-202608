@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var die_sfx: AudioStreamPlayer2D = $die_sfx
 @onready var revive: AudioStreamPlayer2D = $revive
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var Narrator: AudioStreamPlayer = $"../NarratorScene"
 @onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
 @onready var god_rays: Sprite2D = $"../CanvasLayer/god_rays"
 @onready var main_menu: Node2D = $"../CanvasLayer/main menu"
