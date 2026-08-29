@@ -9,11 +9,11 @@
 [ext_resource type="AudioStream" uid="uid://cf5a0nsae21m2" path="res://Audio/easy mode.wav" id="7_7uqpt"]
 [ext_resource type="AudioStream" uid="uid://cr8mvbigj48ug" path="res://Assets/audio/first checkpoint.wav" id="8_esc7h"]
 [ext_resource type="AudioStream" uid="uid://b2rjhq7kkaear" path="res://Assets/audio/checkpoint_2.wav" id="9_esc7h"]
-[ext_resource type="AudioStream" uid="uid://bgc2qko1undnc" path="res://Assets/audio/suprise.wav" id="9_sfpr4"]
 [ext_resource type="AudioStream" uid="uid://3cv21gkun4st" path="res://Assets/audio/intro.wav" id="10_m38sx"]
 [ext_resource type="AudioStream" uid="uid://cexcxmsvvp1l3" path="res://Assets/audio/first_trap.wav" id="11_okkhk"]
 [ext_resource type="AudioStream" uid="uid://y6qsqdp7g61g" path="res://Assets/audio/2nd trap.wav" id="12_01on1"]
 [ext_resource type="AudioStream" uid="uid://d06j6qiaaedvx" path="res://Assets/audio/ha lol.wav.wav" id="13_sncm3"]
+[ext_resource type="AudioStream" uid="uid://ditb8owfdi5px" path="res://Assets/audio/win.wav" id="14_sfpr4"]
 
 [sub_resource type="Resource" id="Resource_crry3"]
 script = ExtResource("2_uyow7")
@@ -83,7 +83,8 @@ metadata/_custom_type_script = "uid://bi1qqewkr37ft"
 
 [sub_resource type="Resource" id="Resource_esc7h"]
 script = ExtResource("2_uyow7")
-stream = ExtResource("9_sfpr4")
+stream = ExtResource("14_sfpr4")
+subtitle = "Congrats ! No need to thank me,"
 metadata/_custom_type_script = "uid://bi1qqewkr37ft"
 
 [node name="NarratorScene" type="AudioStreamPlayer" unique_id=673513881]
