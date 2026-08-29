@@ -1,12 +1,38 @@
 [gd_scene format=3 uid="uid://bjckoq3a55vrj"]
 
 [ext_resource type="Script" uid="uid://dtyy23yecegm" path="res://Scripts/narrator.gd" id="1_70phn"]
-[ext_resource type="AudioStream" uid="uid://cok83j56rgw8q" path="res://Audio/killfloor_taunt_01.wav" id="2_wlq5v"]
-[ext_resource type="AudioStream" uid="uid://bgsxqs3hntt8p" path="res://Audio/killfloor_taunt_02.wav" id="3_7uqpt"]
-[ext_resource type="AudioStream" uid="uid://buanpan3tc3vh" path="res://Audio/killfloor_taunt_03.wav" id="4_2212s"]
-[ext_resource type="AudioStream" uid="uid://diyqxqpnsbi3m" path="res://Audio/killfloor_taunt_04.wav" id="5_cgh0n"]
-[ext_resource type="AudioStream" uid="uid://cgkxxswqkuoki" path="res://Audio/killfloor_taunt_05.wav" id="6_qxcvf"]
+[ext_resource type="Script" uid="uid://bi1qqewkr37ft" path="res://Scripts/narrator_line.gd" id="2_nline"]
+[ext_resource type="AudioStream" uid="uid://cok83j56rgw8q" path="res://Audio/killfloor_taunt_01.wav" id="3_wlq5v"]
+[ext_resource type="AudioStream" uid="uid://bgsxqs3hntt8p" path="res://Audio/killfloor_taunt_02.wav" id="4_7uqpt"]
+[ext_resource type="AudioStream" uid="uid://buanpan3tc3vh" path="res://Audio/killfloor_taunt_03.wav" id="5_2212s"]
+[ext_resource type="AudioStream" uid="uid://diyqxqpnsbi3m" path="res://Audio/killfloor_taunt_04.wav" id="6_cgh0n"]
+[ext_resource type="AudioStream" uid="uid://cgkxxswqkuoki" path="res://Audio/killfloor_taunt_05.wav" id="7_qxcvf"]
+
+[sub_resource type="Resource" id="NarratorLine_kf1"]
+script = ExtResource("2_nline")
+stream = ExtResource("3_wlq5v")
+subtitle = "I thought you knew that you can't fly"
+
+[sub_resource type="Resource" id="NarratorLine_kf2"]
+script = ExtResource("2_nline")
+stream = ExtResource("4_7uqpt")
+subtitle = "Did you find something interesting down there...?"
+
+[sub_resource type="Resource" id="NarratorLine_kf3"]
+script = ExtResource("2_nline")
+stream = ExtResource("5_2212s")
+subtitle = "Did you fall down... again?"
+
+[sub_resource type="Resource" id="NarratorLine_kf4"]
+script = ExtResource("2_nline")
+stream = ExtResource("6_cgh0n")
+subtitle = "Wake me up when you're ready to progress... I'm taking a nap!"
+
+[sub_resource type="Resource" id="NarratorLine_kf5"]
+script = ExtResource("2_nline")
+stream = ExtResource("7_qxcvf")
+subtitle = "Sure lucky there are unlimited respawns!"
 
 [node name="NarratorScene" type="AudioStreamPlayer" unique_id=673513881]
 script = ExtResource("1_70phn")
-death_lines_kill_floor = Array[AudioStream]([ExtResource("2_wlq5v"), ExtResource("3_7uqpt"), ExtResource("4_2212s"), ExtResource("5_cgh0n"), ExtResource("6_qxcvf")])
+death_lines_kill_floor = Array[ExtResource("2_nline")]([SubResource("NarratorLine_kf1"), SubResource("NarratorLine_kf2"), SubResource("NarratorLine_kf3"), SubResource("NarratorLine_kf4"), SubResource("NarratorLine_kf5")])
